@@ -1,0 +1,11 @@
+extends base
+
+block content
+    h1= pageTitle
+    p Welcome to #{pageTitle}
+    form(method="POST")
+        input(placeholder="Id", name="id", type="id", requried) 
+        input(placeholder="Name", name="name", type="text", requried) 
+        input(placeholder="Email", name="email", type="email", requried)
+        input(placeholder="Password", name="password", type="password", requried)
+        input(type="submit", value="Signup")
