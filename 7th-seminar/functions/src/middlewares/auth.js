@@ -11,7 +11,6 @@ const { TOKEN_INVALID, TOKEN_EXPIRED } = require('../constants/jwt');
 const checkUserByToken = async (req, res, next) => {
   // request headers에 accesstoken라는 이름으로 담긴 값(jwt)을 가져옵니다.
   const { accesstoken, refreshtoken } = req.headers;
-
   // accesstoken이 없을 시의 에러 처리입니다.
   if (!accesstoken) return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.TOKEN_EMPTY));
 
@@ -40,7 +39,6 @@ const checkUserByToken = async (req, res, next) => {
         req.cookies.accesstoken = newAccesstoken;
         next();
       }
-      
     } else if (decodedRefreshtoken === TOKEN_EXPIRED) { // refreshtoken만 만료
       const userId = decodedAccesstoken.id;
       if (!userId) return res.status(statusCode.UNAUTHORIZED).send(util.fail(statusCode.UNAUTHORIZED, responseMessage.TOKEN_INVALID))
